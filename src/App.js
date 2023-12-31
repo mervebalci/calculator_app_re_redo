@@ -2,6 +2,7 @@ import Wrapper from "./components/Wrapper";
 import Screen from "./components/Screen";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button"
+import CalcProvider from "./context/CalcContext";
 
 const buttonValues = [
   ["C", "+/-", "%", "÷"],
@@ -13,7 +14,7 @@ const buttonValues = [
 
 export default function App() {
   return (
-    <div>
+    <CalcProvider>
       <Wrapper>
         <Screen />
         <ButtonBox>
@@ -27,6 +28,6 @@ export default function App() {
           })}
         </ButtonBox>
       </Wrapper>
-    </div>
+    </CalcProvider>
   );
 }
