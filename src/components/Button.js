@@ -19,14 +19,20 @@ export default function Button({ value }) {
   function handleButtonClick() {
     const results = {
       ".": decimalClick,
+      "C": clearClick,
     }
     return results[value]()
   }
 
-
   // When user clicks on decimal point "." button
   function decimalClick() {
     setCalc({...calc, number: !calc.number.toString().includes('.') ? calc.number + value : calc.number})
+  }
+
+
+  // When user clicks on clear "C" button
+  function clearClick() {
+    setCalc({sign: "", number: 0, result: 0})
   }
 
   return (
