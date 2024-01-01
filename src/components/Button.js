@@ -17,12 +17,16 @@ export default function Button({ value }) {
   const { calc, setCalc } = useContext(CalcContext);
 
   function handleButtonClick() {
-    const results = {
+    const buttons = {
       ".": decimalClick,
       "C": clearClick,
+      "+": signClick,
+      "-": signClick,
+      "x": signClick,
+      "÷": signClick,
     }
-    if (results[value]) {
-      return results[value]()
+    if (buttons[value]) {
+      return buttons[value]()
     } else {
       return handleNumberClick()
     }
@@ -53,8 +57,19 @@ export default function Button({ value }) {
 
   // When user clicks on clear "C" button
   function clearClick() {
-    setCalc({sign: "", number: 0, result: 0})
+    setCalc({sign: "", number: 0, response: 0})
   }
+
+
+  // When user clicks on any operational sign "+ - x ÷" button
+  function signClick() {
+    setCalc({
+      sign: value, 
+      number: 0, 
+      response: !calc.response && calc.number ? calc.number : calc.response
+    })
+  }
+
 
   return (
     <button onClick={handleButtonClick} className={`${getStyleName(value)} button`}>
