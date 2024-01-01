@@ -21,8 +21,29 @@ export default function Button({ value }) {
       ".": decimalClick,
       "C": clearClick,
     }
-    return results[value]()
+    if (results[value]) {
+      return results[value]()
+    } else {
+      return handleNumberClick()
+    }
   }
+
+
+  // When user clicks on any number 0-9 button
+  function handleNumberClick() {
+    // First, change the value to string
+    const numberToString = value.toString()
+
+    let numberValue;
+    if (numberToString === '0' && calc.number === 0) {
+      numberValue = "0"
+    } else {
+      numberValue = Number(calc.number + numberToString)
+    }
+
+    setCalc({...calc, number: numberValue})
+  }
+
 
   // When user clicks on decimal point "." button
   function decimalClick() {
