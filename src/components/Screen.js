@@ -7,7 +7,7 @@ export default function Screen() {
   
   return (
     <Textfit className="screen" max={70} mode="single">
-      {calc.number ? calc.number : calc.result}
+      {calc.number ? calc.number : calc.response}
     </Textfit>
   )
 }
