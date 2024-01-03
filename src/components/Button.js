@@ -25,6 +25,7 @@ export default function Button({ value }) {
       "x": signClick,
       "÷": signClick,
       "=": equalsClick,
+      "%": percentClick,
     }
     if (buttons[value]) {
       return buttons[value]()
@@ -58,7 +59,7 @@ export default function Button({ value }) {
 
   // When user clicks on clear "C" button
   function clearClick() {
-    setCalc({sign: "", number: 0, response: 0})
+    setCalc({sign: "", number: 0, result: 0})
   }
 
 
@@ -67,14 +68,14 @@ export default function Button({ value }) {
     setCalc({
       sign: value, 
       number: 0, 
-      response: !calc.response && calc.number ? calc.number : calc.response
+      result: !calc.result && calc.number ? calc.number : calc.result
     })
   }
 
 
   // When user clicks on equals "=" button
   function equalsClick() {
-    if (calc.response && calc.number) {
+    if (calc.result && calc.number) {
       function math(a, b, sign) {
         const result = {
           "+": (a, b) => a + b,
@@ -87,9 +88,21 @@ export default function Button({ value }) {
       setCalc({
         sign: "",
         number: 0,
-        response: math(calc.response, calc.number, calc.sign)
+        result: math(calc.result, calc.number, calc.sign)
       })
     }
+    console.log(calc)
+  }
+
+
+  // When user clicks on percentage "%" button
+  function percentClick() {
+    setCalc({
+      sign: "",
+      number: (calc.number / 100),
+      result: (calc.result / 100)
+    })
+    console.log(calc)
   }
 
 

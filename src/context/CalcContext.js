@@ -6,7 +6,7 @@ export default function CalcProvider({ children }) {
   const [calc, setCalc] = useState({
     sign: "",
     number: 0,
-    response: 0,
+    result: 0,
   })
 
   const providerValue = {
